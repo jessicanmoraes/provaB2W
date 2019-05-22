@@ -28,8 +28,8 @@ public class PlanetaRepositoryTest {
     @Before
     public void setUp() {
         
-    	planeta1 = repository.save(new Planeta("Boba Fett", "teste","teste"));
-        planeta2 = repository.save(new Planeta("Lando", "teste","teste"));
+    	planeta1 = repository.save(new Planeta("Coruscant", "teste","teste"));
+        planeta2 = repository.save(new Planeta("Dagobah", "teste","teste"));
     }
     
     @After
@@ -42,7 +42,7 @@ public class PlanetaRepositoryTest {
     @Test
     public void testa_criar_planeta() {
         
-    	Planeta planeta = repository.save(new Planeta("R2","teste","teste"));
+    	Planeta planeta = repository.save(new Planeta("Hoth","teste","teste"));
         Assert.assertFalse(planeta.getId().isEmpty());
         repository.delete(planeta);
     }
@@ -50,14 +50,14 @@ public class PlanetaRepositoryTest {
     @Test
     public void testa_buscar_por_nome() {
     	
-    	List<Planeta> result = repository.findByNomeContaining("Boba Fett");
+    	List<Planeta> result = repository.findByNomeContaining("R2D2");
     	Assert.assertFalse(result.isEmpty());
     }
 
     @Test
     public void testa_buscar_por_id() {
     	
-    	Optional<Planeta> obj = repository.findById("Boba Fett");
+    	Optional<Planeta> obj = repository.findById("Hoth");
     	Assert.assertNotNull(obj);
     }
 
@@ -69,15 +69,5 @@ public class PlanetaRepositoryTest {
     	Assert.assertFalse(result.isEmpty());
     }
     
-    @Test
-    public void testa_deletar_planeta() {
-    	
-    	List<Planeta> planeta = repository.findByNomeContaining("Lando");
-    	repository.delete(planeta.get(0));
-    	List<Planeta> response = repository.findByNomeContaining("Lando");
-    	Assert.assertTrue(response.isEmpty());
 
-    	Assert.assertFalse(planeta.isEmpty());
-    	 
-    }
 }

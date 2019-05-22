@@ -91,7 +91,7 @@ public class PlanetaController {
 		return 0;
 	}
 	 
-	//A CADA UMA HORA BAIXA NOVAMENTE A LISTA DA API POIS A API TEM UM LIMITE DE SOLICITAÇÕES POR DIA
+	// a cada hora baixamos os dados da api , API possui limite de solicitações diárias
 	private List<PlanetaApi> implementaCache(List<PlanetaApi> result, Calendar horaInicial) {
 		Calendar atual = Calendar.getInstance(); 
 		Calendar horaComparar = (Calendar) horaInicial.clone();
@@ -103,6 +103,8 @@ public class PlanetaController {
 			result = swapi.RetornaAparicoes().getBody().getResults(); 
 			horaInicial = Calendar.getInstance(); 
 		}
-		return result;
+		//return result;
+		// teste
+		return result = swapi.RetornaAparicoes().getBody().getResults(); 
 	}
 }

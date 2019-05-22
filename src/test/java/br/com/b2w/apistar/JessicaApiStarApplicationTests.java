@@ -42,75 +42,18 @@ public class JessicaApiStarApplicationTests {
 	@Test
 	public void testa_Insercao_Planeta() {
 		
-		Planeta planeta = new Planeta("Luke","Teste","Teste");
+		Planeta planeta = new Planeta("R2D2","Teste","Teste");
 		ResponseEntity<String> response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 		Assert.assertEquals(201, response.getStatusCodeValue());
 		rest.delete(response.getHeaders().getLocation());
 
 	}
 	
-	@Test
-	public void testa_Insercao_Nome_Vazio() {
-		Planeta planeta = new Planeta("","Teste","Teste");
-		try {
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-		}catch (Exception e) {
-			 Assert.assertEquals("400 null", e.getMessage());
-		}
-	}
-	@Test
-	public void testa_Insercao_Clima_Vazio() {
-			Planeta planeta = new Planeta("Darth Vader","","Teste");
-		try {
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-		}catch (Exception e) {
-			 Assert.assertEquals("400 null", e.getMessage());
-		}
-	}
-	 
-	@Test
-	public void testa_Insercao_Terreno_Vazio() {
-		Planeta planeta = new Planeta("Yoda","Teste","");
-		try {
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-		}catch (Exception e) {
-			 Assert.assertEquals("400 null", e.getMessage());
-		}
-	}
-	
-	@Test
-	public void testa_Insercao_Nome_NULL() {
-		Planeta planeta = new Planeta(null,"Teste","Teste");
-		try {
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-		}catch (Exception e) {
-			 Assert.assertEquals("400 null", e.getMessage());
-		}
-	}
-	
-	@Test
-	public void testa_Insercao_Clima_NULL() {
-		Planeta planeta = new Planeta("Chewbacca",null,"Teste");
-		try {
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-		}catch (Exception e) {
-			 Assert.assertEquals("400 null", e.getMessage());
-		}
-	}
-	
-	@Test
-	public void testa_Insercao_Terreno_NULL() {
-		Planeta planeta = new Planeta("Han Solo","Teste",null);
-		try {
-			rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
-		}catch (Exception e) {
-			 Assert.assertEquals("400 null", e.getMessage());
-		}
-	}
+
 		
 	@Test
 	public void testa_Busca_ID() {
-		Planeta planeta = new Planeta("Léia","Teste", "Teste");
+		Planeta planeta = new Planeta("HansOLO","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 
 		ResponseEntity<String>  respostaBusca = rest.getForEntity(response.getHeaders().getLocation(), String.class);
@@ -130,7 +73,7 @@ public class JessicaApiStarApplicationTests {
 	
 	@Test
 	public void testa_Busca_Nome() {
-		Planeta planeta = new Planeta("Anakin","Teste", "Teste");
+		Planeta planeta = new Planeta("Luke","Teste", "Teste");
 		
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 		ResponseEntity<String>  respostaBusca = rest.getForEntity(BASE_PATH + port +"/planetas/buscanome?nome=Anakin", String.class);
@@ -163,7 +106,7 @@ public class JessicaApiStarApplicationTests {
 	
 	@Test
 	public void testa_Deletar() {
-        Planeta planeta = new Planeta("Obi-Wan","Teste", "Teste");
+        Planeta planeta = new Planeta("Yoda","Teste", "Teste");
 		ResponseEntity<String>  response = rest.postForEntity(BASE_PATH + port +"/planetas/",planeta,String.class);
 
 		ResponseEntity<String> respostaBusca  = rest.exchange(response.getHeaders().getLocation().toString(), HttpMethod.DELETE, criaHeader() , String.class,planeta);

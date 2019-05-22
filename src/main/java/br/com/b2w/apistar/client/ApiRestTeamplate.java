@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApiRestTeamplate {
-	
+	// Teste para saber se a API do swapi está online. 
     final static String url = "https://swapi.co/api/planets/";
 	   
     RestTemplate restTemplate = new RestTemplate();
@@ -30,7 +30,7 @@ public class ApiRestTeamplate {
 		try { 
 			return restTemplate.exchange(url, HttpMethod.GET,geraHeader(),ResultApi.class);
    		}catch(Exception e) {
-   			throw new ServiceUnavailable("SWAPI fora do ar");
+   			throw new ServiceUnavailable("API swapi está fora do ar");
    		}
    	}
 	
